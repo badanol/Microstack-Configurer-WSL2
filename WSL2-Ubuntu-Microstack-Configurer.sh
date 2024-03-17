@@ -3,7 +3,7 @@ set -e
 CONFIG_PATH=$PWD/.config
 
 #Before running the script, enter your computer username
-WINDOWS_USERNAME=$(cmd.exe /c "echo %USERNAME%" 2> /dev/null | tr -d '\012\015')
+WINDOWS_USERNAME=
 echo "WINDOWS_USERNAME is $WINDOWS_USERNAME"
 
 if [[ ! -f /proc/sys/fs/binfmt_misc/WSLInterop ]]
