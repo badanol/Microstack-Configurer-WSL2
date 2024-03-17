@@ -3,10 +3,9 @@ set -e
 CONFIG_PATH=$PWD/.config
 
 #Before running the script, enter your computer username
-WINDOWS_USERNAME=
-#This is important!
+WINDOWS_USERNAME=$(cmd.exe /c "echo %USERNAME%" 2> /dev/null | tr -d '\012\015')
+echo "WINDOWS_USERNAME is $WINDOWS_USERNAME"
 
-#echo  "/mnt/c/Users/$WINDOWS_USERNAME/wsl2"
 if [[ ! -f /proc/sys/fs/binfmt_misc/WSLInterop ]]
 then
     echo "This script can only be run in Ubuntu WSL2 environments"
@@ -39,17 +38,16 @@ echo "Configuring Kernel ..."
 
 cp "$CONFIG_PATH" /usr/src/wsl2/.config
 
-
 echo ""
 echo "Installing BC and Pahole ..."
 
 apt install -y bc dwarves 
 
-
 echo ""
 echo "Building the Kernel (this may take a lot of time) ..."
 
-make 
+jobs=$(($(cat /proc/cpuinfo | grep processor | wc -l)+1))
+make -j $jobs
 
 make modules_install 
 
