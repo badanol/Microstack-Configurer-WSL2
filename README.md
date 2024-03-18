@@ -12,7 +12,7 @@ Microstack Configurer WSL2 is a simple SH script that automates WSL2 configurati
 The first thing you need to do is clone the current repository to download the script:
 
 ```
-git clone https://github.com/Sorecchione07435/Microstack-Configurer-WSL2.git
+git clone https://github.com/badanol/Microstack-Configurer-WSL2.git
 ```
 
 After the repository has been cloned enter it with
